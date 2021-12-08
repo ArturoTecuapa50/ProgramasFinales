@@ -3,6 +3,9 @@ Autor: Tecuapa Gallardo Arturo
 Titulo: Ejercicio tema3
 Date: 06/12/2021
 */
+.data
+.text
+.global fibo
 
 fibo : push { lr } @ salvaguarda lr
 	sub sp, # 12 @ hago espacio para v. locales
