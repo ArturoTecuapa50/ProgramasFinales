@@ -1,26 +1,40 @@
 /*
 Autor: Tecuapa Gallardo Arturo
 Titulo: Ejercicio tema3
-Date: 06/12/2021
+Date: 08/12/2021
 */
+
 .data
 .text
-.global fibo
+.global main
+main:
+	mov r0
+	mov r1
+	mov r2, r1
+	mov r3
+	mov r4
+	CMP r0
+	BEQ caso1
+	CMP r0
+	BEQ caso2
+function:
+	ADD r1
+	CMP r1, r0
+	BEQ final
 
-fibo : push { lr } @ salvaguarda lr
-	sub sp, # 12 @ hago espacio para v. locales
-	cmp r0, # 2 @ if n<2
-	movlo r0, # 1 @ return 1
-	blo fib1
-	sub r0, # 1 @ else
-	str r0, [ sp ] @ salvo n-1 en [sp]
-	bl fibo @ fibonacci (n-1)
-	str r0, [ sp, #4 ] @ salvo valor devuelto por fib. (n-1)
-	ldr r0, [ sp ] @ recupero de la pila n-1
-	sub r0, # 1 @ calculo n-2
-	bl fibo @ fibonacci (n-2)
-	ldr r1, [ sp, #4 ] @ recupero salida de fib. (n-1)
-	add r0, r1 @ lo sumo a fib. (n-1)
-fib1 : add sp, # 12 @ libero espacio de v. locales
-	pop { lr } @ recupero registros (sólo lr)
-	bx lr @ salgo de la funci ón
+	ADD r4, r3, r2
+	mov r2, r3
+	mov r3, r4
+	BAL funcion
+
+caso1:
+	mov r4
+	BAL final
+
+caso2:
+	mov r4
+	BAL final
+
+final:
+	mov r1, r0
+	mov r2, r4
